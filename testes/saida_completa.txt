@@ -1,0 +1,130 @@
+==============================================
+  CONVERSOR DECIMAL <-> HEXADECIMAL (6 BITS)
+  Faixa valida: 0 a 63  |  0x00 a 0x3F
+==============================================
+
+1 - Decimal para Hexadecimal
+2 - Hexadecimal para Decimal
+0 - Sair
+Opcao: 1
+Digite um numero decimal (0 a 63): 0
+  Divisoes sucessivas por 16:
+     0 / 16 = 0  resto  0 -> '0'
+     0 / 16 = 0  resto  0 -> '0'
+  Resultado: 0 (decimal) = 0x00 (hexadecimal) = 000000 (binario 6 bits)
+
+1 - Decimal para Hexadecimal
+2 - Hexadecimal para Decimal
+0 - Sair
+Opcao: 1
+Digite um numero decimal (0 a 63): 10
+  Divisoes sucessivas por 16:
+    10 / 16 = 0  resto 10 -> 'A'
+     0 / 16 = 0  resto  0 -> '0'
+  Resultado: 10 (decimal) = 0x0A (hexadecimal) = 001010 (binario 6 bits)
+
+1 - Decimal para Hexadecimal
+2 - Hexadecimal para Decimal
+0 - Sair
+Opcao: 1
+Digite um numero decimal (0 a 63): 42
+  Divisoes sucessivas por 16:
+    42 / 16 = 2  resto 10 -> 'A'
+     2 / 16 = 0  resto  2 -> '2'
+  Resultado: 42 (decimal) = 0x2A (hexadecimal) = 101010 (binario 6 bits)
+
+1 - Decimal para Hexadecimal
+2 - Hexadecimal para Decimal
+0 - Sair
+Opcao: 1
+Digite um numero decimal (0 a 63): 63
+  Divisoes sucessivas por 16:
+    63 / 16 = 3  resto 15 -> 'F'
+     3 / 16 = 0  resto  3 -> '3'
+  Resultado: 63 (decimal) = 0x3F (hexadecimal) = 111111 (binario 6 bits)
+
+1 - Decimal para Hexadecimal
+2 - Hexadecimal para Decimal
+0 - Sair
+Opcao: 1
+Digite um numero decimal (0 a 63): -1
+  [ERRO] -1 esta fora do limite de 6 bits (0 a 63).
+         Valores negativos nao podem ser representados (sem sinal).
+
+1 - Decimal para Hexadecimal
+2 - Hexadecimal para Decimal
+0 - Sair
+Opcao: 1
+Digite um numero decimal (0 a 63): 64
+  [ERRO] 64 esta fora do limite de 6 bits (0 a 63).
+         64 precisaria de mais de 6 bits.
+
+1 - Decimal para Hexadecimal
+2 - Hexadecimal para Decimal
+0 - Sair
+Opcao: 1
+Digite um numero decimal (0 a 63): abc
+  [ERRO] "abc" nao e um numero decimal valido.
+
+1 - Decimal para Hexadecimal
+2 - Hexadecimal para Decimal
+0 - Sair
+Opcao: 2
+Digite um numero hexadecimal (00 a 3F): 00
+  Metodo posicional:
+    0 x 16^1 + 0 x 16^0 = 0 x 16 + 0 x 1 = 0 + 0 = 0
+  Resultado: 0x00 (hexadecimal) = 0 (decimal) = 000000 (binario 6 bits)
+
+1 - Decimal para Hexadecimal
+2 - Hexadecimal para Decimal
+0 - Sair
+Opcao: 2
+Digite um numero hexadecimal (00 a 3F): A
+  Metodo posicional:
+    0 x 16^1 + A x 16^0 = 0 x 16 + 10 x 1 = 0 + 10 = 10
+  Resultado: 0x0A (hexadecimal) = 10 (decimal) = 001010 (binario 6 bits)
+
+1 - Decimal para Hexadecimal
+2 - Hexadecimal para Decimal
+0 - Sair
+Opcao: 2
+Digite um numero hexadecimal (00 a 3F): 2A
+  Metodo posicional:
+    2 x 16^1 + A x 16^0 = 2 x 16 + 10 x 1 = 32 + 10 = 42
+  Resultado: 0x2A (hexadecimal) = 42 (decimal) = 101010 (binario 6 bits)
+
+1 - Decimal para Hexadecimal
+2 - Hexadecimal para Decimal
+0 - Sair
+Opcao: 2
+Digite um numero hexadecimal (00 a 3F): 3F
+  Metodo posicional:
+    3 x 16^1 + F x 16^0 = 3 x 16 + 15 x 1 = 48 + 15 = 63
+  Resultado: 0x3F (hexadecimal) = 63 (decimal) = 111111 (binario 6 bits)
+
+1 - Decimal para Hexadecimal
+2 - Hexadecimal para Decimal
+0 - Sair
+Opcao: 2
+Digite um numero hexadecimal (00 a 3F): 40
+  [ERRO] 40 (= 64 em decimal) esta fora do limite de 6 bits (00 a 3F).
+
+1 - Decimal para Hexadecimal
+2 - Hexadecimal para Decimal
+0 - Sair
+Opcao: 2
+Digite um numero hexadecimal (00 a 3F): -1
+  [ERRO] -1 (= -1 em decimal) esta fora do limite de 6 bits (00 a 3F).
+
+1 - Decimal para Hexadecimal
+2 - Hexadecimal para Decimal
+0 - Sair
+Opcao: 2
+Digite um numero hexadecimal (00 a 3F): G1
+  [ERRO] "G1" nao e um numero hexadecimal valido (use 0-9 e A-F).
+
+1 - Decimal para Hexadecimal
+2 - Hexadecimal para Decimal
+0 - Sair
+Opcao: 0
+Encerrando o programa.
