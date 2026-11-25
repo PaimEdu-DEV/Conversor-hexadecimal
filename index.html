@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Decimal para Hexadecimal</title>
+<style>
+  body {
+    font-family: system-ui, sans-serif;
+    display: flex; flex-direction: column; align-items: center;
+    margin: 0; padding: 40px 16px; min-height: 100vh;
+    background: #f4f4f2; color: #222;
+  }
+  h1 { font-size: 1.4rem; margin: 0 0 24px; }
+  input {
+    font-size: 1.5rem; width: 180px; padding: 8px; text-align: center;
+    border: 2px solid #999; border-radius: 8px;
+  }
+  button {
+    margin-top: 12px; font-size: 1rem; padding: 10px 24px;
+    border: none; border-radius: 8px; background: #0b6e4f; color: #fff; cursor: pointer;
+  }
+  #resultado { margin-top: 24px; font-size: 1.3rem; min-height: 2em; text-align: center; }
+  .erro { color: #b42318; }
+  .small { color: #666; font-size: 0.95rem; margin-top: 6px; }
+</style>
+</head>
+<body>
+  <h1>Decimal para Hexadecimal (6 bits)</h1>
+  <input id="num" type="number" min="0" max="63" placeholder="0 a 63" autofocus>
+  <br>
+  <button id="btn">Converter</button>
+  <div id="resultado"></div>
+  <div class="small">Faixa válida: 0 a 63 (0x00 a 0x3F)</div>
+
+<script>
+  const input = document.getElementById('num');
+  const out = document.getElementById('resultado');
+
+  function converter() {
+    const texto = input.value.trim();
+    const n = Number(texto);
+    if (texto === '' || !Number.isInteger(n)) {
+      out.innerHTML = '<span class="erro">Digite um número inteiro.</span>';
+      return;
+    }
+    if (n < 0 || n > 63) {
+      out.innerHTML = '<span class="erro">Fora da faixa de 6 bits (0 a 63).</span>';
+      return;
+    }
+    const hex = n.toString(16).toUpperCase().padStart(2, '0');
+    const bin = n.toString(2).padStart(6, '0');
+    out.innerHTML = `0x${hex}<div class="small">binário: ${bin}</div>`;
+  }
+
+  document.getElementById('btn').addEventListener('click', converter);
+  input.addEventListener('keydown', e => { if (e.key === 'Enter') converter(); });
+</script>
+</body>
+</html>
