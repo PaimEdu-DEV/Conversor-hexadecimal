@@ -1,0 +1,47 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><title>Roteiro de fala</title>
+<style>
+@page{size:A4;margin:16mm 16mm}
+body{font-family:Inter,"DejaVu Sans",sans-serif;color:#1b2430;font-size:12.5pt;line-height:1.45}
+h1{color:#12305a;font-size:22pt;margin:0 0 4px} .sub{color:#5b6675;margin:0 0 18px}
+h2{font-size:15pt;margin:22px 0 8px;padding:6px 12px;border-radius:8px;color:#fff;break-after:avoid}
+.v{background:#2e8b57}.c{background:#8e44ad}.f{background:#e8833a}.e{background:#1f4e8c}.t{background:#5b6675}
+.s{margin:0 0 10px;padding-left:12px;border-left:3px solid #d9e1ec;break-inside:avoid}
+.s b{color:#12305a}
+.dica{background:#eef3fa;border-radius:8px;padding:10px 14px;margin-top:18px}
+</style></head><body>
+<h1>Roteiro de fala</h1>
+<p class="sub">O que cada um diz em cada slide. Fale com suas palavras; isto é só uma cola.</p>
+
+<h2 class="t">Abertura (qualquer um) · Slides 1 e 2</h2>
+<div class="s"><b>Slide 1:</b> “Boa noite! Nós somos Vitor, César, Eduardo e Felipe, e vamos mostrar um conversor de decimal para hexadecimal em 6 bits, feito em C.”</div>
+<div class="s"><b>Slide 2:</b> “Cada um vai falar de uma parte: o Vitor explica o problema, o César as bases numéricas, o Felipe os 6 bits e o Eduardo o código.”</div>
+
+<h2 class="v">Vitor · Slides 3, 4 e 18</h2>
+<div class="s"><b>Slide 3:</b> “O computador só entende 0 e 1, o binário. Só que para a gente ler 101010 é chato e fácil de errar. O hexadecimal é um resumo: o mesmo número, mais curto. É como trocar um monte de moedinhas por uma nota.”</div>
+<div class="s"><b>Slide 4:</b> “E vocês já viram hexadecimal sem saber: as cores dos sites, tipo #FF0000 que é vermelho; aqueles códigos de erro do Windows; e o endereço da placa de Wi-Fi.”</div>
+<div class="s"><b>Slide 18 (conclusão):</b> “Resumindo: hexadecimal é um jeito curto de escrever binário. Com 6 bits cabem só os números de 0 a 63. Para converter é só dividir por 16. E o programa confere o limite antes de converter.”</div>
+
+<h2 class="c">César · Slides 5, 6 e 17</h2>
+<div class="s"><b>Slide 5:</b> “Existem três jeitos de escrever o mesmo número. Decimal usa 10 símbolos, o binário só 2, e o hexadecimal 16. Como depois do 9 acabam os números, o hexadecimal usa letras: A é 10, B é 11, até F, que é 15.”</div>
+<div class="s"><b>Slide 6:</b> “Pensem em dedos: a gente tem 10. O computador só tem 2, ligado e desligado, então o número fica comprido. O hexadecimal é como alguém com 16 dedos: conta mais antes de virar a casa, e o número fica curto. E um dígito hexadecimal vale exatamente 4 bits.”</div>
+<div class="s"><b>Slide 17 (desafio):</b> Pergunte à turma: “Quanto é 15 em hexa?” (0x0F) “E 32?” (0x20, dois grupos de 16) “E 64?” Espere alguém responder e diga: “Pegadinha! 64 não cabe em 6 bits, dá erro.”</div>
+
+<h2 class="f">Felipe · Slides 7, 8 e 16</h2>
+<div class="s"><b>Slide 7:</b> “6 bits são como 6 lâmpadas: cada uma acesa ou apagada. Cada lâmpada vale um número: 32, 16, 8, 4, 2 e 1. Todas acesas dão 63. Então só dá para guardar de 0 a 63, que são 64 números.”</div>
+<div class="s"><b>Slide 8:</b> “Quando o número não cabe, acontece o overflow, o estouro. É como o hodômetro do carro que passa de 99.999 e volta para zero. Até o YouTube passou por isso com o Gangnam Style e teve que aumentar o contador. No nosso programa, em vez de dar errado, ele avisa.”</div>
+<div class="s"><b>Slide 16:</b> “Aqui o programa barrando: o -1 é negativo, o 64 precisaria de 7 bits, e ‘abc’ nem é número. Em todos os casos ele mostra o erro e volta para o menu, sem travar.”</div>
+
+<h2 class="e">Eduardo · Slides 9 a 15 (o código)</h2>
+<div class="s"><b>Slide 9:</b> “Primeiro no caderno: 42 dividido por 16 dá 2 e sobra 10, que é A. Depois 2 dividido por 16 dá 0 e sobra 2. Lendo os restos de baixo para cima: 2A. O ‘0x’ é só uma etiqueta que avisa que é hexadecimal.”</div>
+<div class="s"><b>Slide 10:</b> “O programa faz 4 coisas: recebe o número, confere se é número, confere se cabe em 6 bits e, se estiver tudo certo, converte e mostra o resultado. Se der errado, avisa e volta para o menu.”</div>
+<div class="s"><b>Slide 11:</b> “No começo do código definimos as regras: 6 bits, mínimo 0, e o máximo o próprio programa calcula: 63. Se quiser 8 bits, é só trocar o 6 por 8.”</div>
+<div class="s"><b>Slide 12:</b> “Essa função é o porteiro: só deixa passar números de 0 a 63. Antes dela, outra função confere letra por letra se o que foi digitado é número.”</div>
+<div class="s"><b>Slide 13:</b> “Aqui está a conta do caderno em C. O <i>% 16</i> pega o resto, o <i>/= 16</i> divide, e uma tabelinha ‘0123456789ABCDEF’ troca o número pela letra.”</div>
+<div class="s"><b>Slide 14:</b> “Este laço olha as 6 lâmpadas, uma por uma, da esquerda para a direita: acesa escreve 1, apagada escreve 0. Assim 42 vira 101010.”</div>
+<div class="s"><b>Slide 15:</b> “E aqui o programa rodando de verdade: 0 vira 0x00, 42 vira 0x2A e 63 vira 0x3F, com a conta passo a passo.”</div>
+
+<h2 class="t">Final (todos) · Slide 19</h2>
+<div class="s">“Vocês podem testar agora pelo celular: é só apontar a câmera para o QR code. Obrigado! Alguma pergunta?”</div>
+
+<div class="dica"><b>Se perguntarem algo difícil:</b> “Boa pergunta! O ponto principal é que 6 bits só guardam de 0 a 63, e o programa confere isso antes de converter.”</div>
+</body></html>

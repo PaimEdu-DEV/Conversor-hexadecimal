@@ -67,11 +67,28 @@ pre.code {
 .grande { font-size: 74px; font-weight: 800; color: var(--azul); font-family: "DejaVu Sans Mono", monospace; }
 .tag { display: inline-block; background: var(--laranja); color: #fff; border-radius: 6px; padding: 2px 10px; font-size: 20px; font-weight: 700; vertical-align: middle; }
 img.print { max-width: 100%; max-height: 520px; display: block; }
+.quem { position: absolute; top: 26px; right: 40px; font-size: 16px; font-weight: 700; padding: 6px 14px; border-radius: 999px; color: #fff; letter-spacing: .04em; }
+.q-vitor { background: #2e8b57; } .q-cesar { background: #8e44ad; } .q-felipe { background: #e8833a; } .q-eduardo { background: #1f4e8c; } .q-todos { background: #5b6675; }
+.cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+.card { background: var(--claro); border-radius: 14px; padding: 22px; }
+.card .ico { font-size: 40px; font-weight: 800; color: var(--azul); font-family: "DejaVu Sans Mono", monospace; }
+.card h3 { margin: 8px 0 6px; font-size: 24px; }
+.card p { font-size: 20px; margin: 0; line-height: 1.4; }
+.fluxo { display: flex; align-items: center; gap: 14px; margin-top: 30px; }
+.passo { flex: 1; background: var(--claro); border-radius: 14px; padding: 22px 16px; text-align: center; font-size: 22px; min-height: 150px; display:flex; flex-direction:column; justify-content:center; }
+.passo b { display: block; font-size: 34px; color: var(--azul); margin-bottom: 6px; }
+.seta { font-size: 36px; color: var(--cinza); }
+.quiz { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 10px; }
+.quiz .card { text-align: center; padding: 30px 18px; }
+.quiz .pergunta { font-size: 54px; font-weight: 800; font-family: "DejaVu Sans Mono", monospace; color: var(--azul-esc); }
+.quiz .resp { margin-top: 16px; font-size: 26px; font-family: "DejaVu Sans Mono", monospace; color: var(--laranja); font-weight: 700; }
+.equipe { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-top: 10px; }
+.equipe .card { text-align: center; }
+.equipe .card h3 { font-size: 28px; }
+.link { font-family: "DejaVu Sans Mono", monospace; font-size: 26px; color: var(--azul); font-weight: 700; word-break: break-all; }
 </style>
 </head>
 <body>
-
-<!-- 1. CAPA -->
 <section class="slide capa">
   <p style="font-size:20px;letter-spacing:.14em;text-transform:uppercase;color:#cfe0f5;margin:0 0 18px">Arquitetura e Organização de Computadores</p>
   <h1>Conversor Decimal → Hexadecimal<br>em 6 bits</h1>
@@ -79,30 +96,43 @@ img.print { max-width: 100%; max-height: 520px; display: block; }
   <div class="nomes"><span>Vitor</span><span>César</span><span>Eduardo</span><span>Felipe</span></div>
   <div class="rodape">Centro Universitário da Serra Gaúcha (FSG) · Engenharia de Software<br>Prof. Marcos Leandro Woyciekoski · 25 de novembro de 2026</div>
 </section>
-
-<!-- 2. PROBLEMA -->
-<section class="slide" data-n="2"><div class="faixa"></div>
-  <h2>O problema</h2>
+<section class="slide" data-n="2"><div class="faixa"></div><div class="quem q-todos">TODOS</div>
+<h2>Quem fala o quê</h2>
+  <p class="sub">Nossa viagem: do dia a dia até o código</p>
+  <div class="equipe">
+    <div class="card"><div class="quem q-vitor" style="position:static;display:inline-block">VITOR</div><h3>O problema</h3><p>Por que o computador precisa de outra “língua” e onde ela aparece no dia a dia</p></div>
+    <div class="card"><div class="quem q-cesar" style="position:static;display:inline-block">CÉSAR</div><h3>As bases</h3><p>Decimal, binário e hexadecimal: contar nos dedos de jeitos diferentes</p></div>
+    <div class="card"><div class="quem q-felipe" style="position:static;display:inline-block">FELIPE</div><h3>Os 6 bits</h3><p>Por que só cabe de 0 a 63 e o que acontece quando estoura</p></div>
+    <div class="card"><div class="quem q-eduardo" style="position:static;display:inline-block">EDUARDO</div><h3>O código</h3><p>Como o programa em C faz a conversão, passo a passo</p></div>
+  </div>
+</section>
+<section class="slide" data-n="3"><div class="faixa"></div><div class="quem q-vitor">VITOR</div>
+<h2>O problema</h2>
   <p class="sub">O computador só entende 0 e 1. A gente não.</p>
   <div class="row">
+    <div class="col"><ul>
+      <li>O computador guarda tudo em <b class="hl">binário</b>: só zeros e uns.</li>
+      <li>Para nós, ler <code>101010</code> é cansativo e fácil de errar.</li>
+      <li>O <b class="hl">hexadecimal</b> é um “resumo” do binário: o mesmo número, escrito mais curto.</li>
+    </ul></div>
     <div class="col">
-      <ul>
-        <li>O computador guarda tudo em <b class="hl">binário</b>: só zeros e uns.</li>
-        <li>Para nós, ler <code>101010</code> é cansativo e fácil de errar.</li>
-        <li>O <b class="hl">hexadecimal</b> é um “resumo” do binário: o mesmo número, escrito mais curto.</li>
-      </ul>
-    </div>
-    <div class="col">
-      <div class="balao"><b>Comparação:</b><br>
-        É como trocar <i>“dez centavos + dez centavos + dez centavos…”</i> por uma nota de R$ 1. Mesmo valor, bem mais fácil de ler.</div>
+      <div class="balao"><b>Comparação:</b><br>É como trocar um monte de moedinhas de 10 centavos por uma nota. Mesmo valor, muito mais fácil de contar.</div>
       <p style="margin-top:26px;font-size:28px;font-family:'DejaVu Sans Mono',monospace">101010 <span style="color:var(--cinza)">=</span> 42 <span style="color:var(--cinza)">=</span> <b class="hl">0x2A</b></p>
     </div>
   </div>
 </section>
-
-<!-- 3. TRES BASES -->
-<section class="slide" data-n="3"><div class="faixa"></div>
-  <h2>Três jeitos de escrever o mesmo número</h2>
+<section class="slide" data-n="4"><div class="faixa"></div><div class="quem q-vitor">VITOR</div>
+<h2>Você já viu hexadecimal (e nem sabia)</h2>
+  <p class="sub">Ele está escondido em várias coisas do dia a dia</p>
+  <div class="cards">
+    <div class="card"><div class="ico" style="color:#e53935">#FF0000</div><h3>Cores na internet</h3><p>Todo site escreve as cores em hexadecimal. <b>#FF0000</b> é vermelho puro.</p></div>
+    <div class="card"><div class="ico" style="font-size:30px">0x80070005</div><h3>Erros do Windows</h3><p>Aquela tela de erro com um código estranho? É um número em hexadecimal.</p></div>
+    <div class="card"><div class="ico" style="font-size:30px">A4:5E:60:…</div><h3>Endereço do Wi-Fi</h3><p>Cada placa de rede tem um “RG” (endereço MAC) escrito em hexadecimal.</p></div>
+  </div>
+  <div class="balao" style="margin-top:28px"><b>Moral:</b> hexadecimal não é coisa de outro planeta. É só um jeito curto de escrever números que o computador usa.</div>
+</section>
+<section class="slide" data-n="5"><div class="faixa"></div><div class="quem q-cesar">CÉSAR</div>
+<h2>Três jeitos de escrever o mesmo número</h2>
   <p class="sub">Muda só quantos símbolos cada sistema usa</p>
   <table class="tabela">
     <tr><th>Sistema</th><th>Base</th><th>Símbolos</th><th>Quem usa</th></tr>
@@ -110,74 +140,85 @@ img.print { max-width: 100%; max-height: 520px; display: block; }
     <tr><td><b>Binário</b></td><td>2</td><td class="m">0 1</td><td>O computador por dentro</td></tr>
     <tr><td><b>Hexadecimal</b></td><td>16</td><td class="m">0 … 9 A B C D E F</td><td>Programadores, para ler o binário</td></tr>
   </table>
-  <div class="balao" style="margin-top:30px">
-    <b>Por que tem letra?</b> No hexadecimal acabam os números depois do 9. Então: <b>A=10, B=11, C=12, D=13, E=14, F=15</b>.
-  </div>
+  <div class="balao" style="margin-top:30px"><b>Por que tem letra?</b> No hexadecimal os números acabam no 9. Então: <b>A=10, B=11, C=12, D=13, E=14, F=15</b>.</div>
 </section>
-
-<!-- 4. 6 BITS -->
-<section class="slide" data-n="4"><div class="faixa"></div>
-  <h2>Por que só de 0 a 63?</h2>
+<section class="slide" data-n="6"><div class="faixa"></div><div class="quem q-cesar">CÉSAR</div>
+<h2>Contando nos dedos</h2>
+  <p class="sub">Cada sistema é como alguém com uma quantidade diferente de dedos</p>
+  <div class="cards">
+    <div class="card"><div class="ico">10</div><h3>Nós (decimal)</h3><p>Temos 10 dedos. Quando acabam, anotamos “1 mão cheia” e começamos de novo: é o <b>10</b>.</p></div>
+    <div class="card"><div class="ico">2</div><h3>Computador (binário)</h3><p>Só tem 2 “dedos”: ligado e desligado. Por isso enche rápido e o número fica comprido.</p></div>
+    <div class="card"><div class="ico">16</div><h3>Hexadecimal</h3><p>Imagine alguém com 16 dedos. Ele conta muito mais antes de “virar a casa”, então o número fica curtinho.</p></div>
+  </div>
+  <div class="balao" style="margin-top:28px"><b>Curiosidade:</b> 1 dígito hexadecimal vale exatamente 4 bits. Por isso ele é o “resumo perfeito” do binário.</div>
+</section>
+<section class="slide" data-n="7"><div class="faixa"></div><div class="quem q-felipe">FELIPE</div>
+<h2>Por que só de 0 a 63?</h2>
   <p class="sub">6 bits = 6 lâmpadas que podem estar acesas (1) ou apagadas (0)</p>
   <div class="lampadas">
-    <div class="lamp"><div class="b"></div><small>32</small></div>
-    <div class="lamp"><div class="b"></div><small>16</small></div>
-    <div class="lamp"><div class="b"></div><small>8</small></div>
-    <div class="lamp"><div class="b"></div><small>4</small></div>
-    <div class="lamp"><div class="b"></div><small>2</small></div>
-    <div class="lamp"><div class="b"></div><small>1</small></div>
+    <div class="lamp"><div class="b"></div><small>32</small></div><div class="lamp"><div class="b"></div><small>16</small></div>
+    <div class="lamp"><div class="b"></div><small>8</small></div><div class="lamp"><div class="b"></div><small>4</small></div>
+    <div class="lamp"><div class="b"></div><small>2</small></div><div class="lamp"><div class="b"></div><small>1</small></div>
   </div>
   <p>Todas acesas: 32 + 16 + 8 + 4 + 2 + 1 = <b class="hl">63</b> &nbsp;→&nbsp; <code>111111</code> &nbsp;→&nbsp; <b class="hl">0x3F</b></p>
   <div class="row" style="margin-top:6px">
     <div class="col"><div class="balao"><b>Total:</b> 2⁶ = 64 combinações, de <b>0</b> até <b>63</b>.</div></div>
-    <div class="col"><div class="balao" style="border-color:var(--vermelho)"><b style="color:var(--vermelho)">64 ou -1?</b> Não cabe! Seria preciso uma 7ª lâmpada. Isso é o <i>overflow</i> (estouro).</div></div>
+    <div class="col"><div class="balao" style="border-color:var(--vermelho)"><b style="color:var(--vermelho)">64 ou -1?</b> Não cabe! Precisaria de uma 7ª lâmpada.</div></div>
   </div>
 </section>
-
-<!-- 5. COMO CONVERTE -->
-<section class="slide" data-n="5"><div class="faixa"></div>
-  <h2>Como converter: dividir por 16</h2>
-  <p class="sub">Exemplo com o número 42</p>
+<section class="slide" data-n="8"><div class="faixa"></div><div class="quem q-felipe">FELIPE</div>
+<h2>Quando o número não cabe: overflow</h2>
+  <p class="sub">“Estouro” acontece quando o número é maior do que o espaço guardado para ele</p>
+  <div class="cards">
+    <div class="card"><div class="ico">99999→0</div><h3>Hodômetro do carro</h3><p>Um hodômetro de 5 dígitos que passa de 99.999 km volta para 00.000. Faltou espaço.</p></div>
+    <div class="card"><div class="ico">2³¹</div><h3>Gangnam Style</h3><p>Em 2014 o vídeo chegou tão perto do limite do contador de visualizações que o YouTube teve que aumentar o número de bits.</p></div>
+    <div class="card"><div class="ico">64</div><h3>No nosso programa</h3><p>Com 6 bits, o 64 já não cabe. Em vez de mostrar um valor errado, o programa <b>avisa o erro</b>.</p></div>
+  </div>
+</section>
+<section class="slide" data-n="9"><div class="faixa"></div><div class="quem q-eduardo">EDUARDO</div>
+<h2>Como converter: dividir por 16</h2>
+  <p class="sub">Primeiro no caderno, com o número 42</p>
   <div class="row">
     <div class="col">
-      <div class="conta">
-        42 ÷ 16 = 2 &nbsp;resto <span class="r">10 → A</span><br>
-        &nbsp;2 ÷ 16 = 0 &nbsp;resto <span class="r">2 &nbsp;→ 2</span>
-      </div>
+      <div class="conta">42 ÷ 16 = 2 &nbsp;resto <span class="r">10 → A</span><br>&nbsp;2 ÷ 16 = 0 &nbsp;resto <span class="r">2 &nbsp;→ 2</span></div>
       <p style="margin-top:22px">Lendo os restos <b>de baixo para cima</b>:</p>
       <div class="grande">0x2A</div>
     </div>
     <div class="col">
-      <div class="balao"><b>E o “0x”?</b><br>É só uma <b>etiqueta</b> avisando: “este número está em hexadecimal”. Não entra na conta.</div>
+      <div class="balao"><b>E o “0x”?</b><br>É só uma <b>etiqueta</b> avisando “este número está em hexadecimal”. Não entra na conta.</div>
       <div class="balao" style="margin-top:20px"><b>Outro exemplo:</b> 22 = 1 grupo de 16 + 6 → <b>0x16</b>.</div>
     </div>
   </div>
 </section>
-
-<!-- 6. CODIGO: LIMITES -->
-<section class="slide" data-n="6"><div class="faixa"></div>
-  <h2>No código 1: as regras do jogo</h2>
+<section class="slide" data-n="10"><div class="faixa"></div><div class="quem q-eduardo">EDUARDO</div>
+<h2>O caminho do número dentro do programa</h2>
+  <p class="sub">Tudo o que o programa faz, em 4 passos</p>
+  <div class="fluxo">
+    <div class="passo"><b>1</b>Você digita um número</div><div class="seta">→</div>
+    <div class="passo"><b>2</b>O programa confere se é número mesmo</div><div class="seta">→</div>
+    <div class="passo"><b>3</b>Confere se cabe em 6 bits (0 a 63)</div><div class="seta">→</div>
+    <div class="passo"><b>4</b>Converte e mostra hex + binário</div>
+  </div>
+  <div class="balao" style="margin-top:34px"><b>Se der errado no passo 2 ou 3:</b> o programa mostra uma mensagem de erro e volta para o menu. Ele <b>nunca trava</b>.</div>
+</section>
+<section class="slide" data-n="11"><div class="faixa"></div><div class="quem q-eduardo">EDUARDO</div>
+<h2>No código 1: as regras do jogo</h2>
   <p class="sub">Logo no começo do programa, definimos o tamanho e os limites</p>
   <div class="row">
     <div class="col" style="flex:1.3">
 <pre class="code"><span class="k">#define</span> NUM_BITS   <span class="n">6</span>
 <span class="k">#define</span> VALOR_MIN  <span class="n">0</span>
 <span class="k">#define</span> VALOR_MAX  ((<span class="n">1</span> &lt;&lt; NUM_BITS) - <span class="n">1</span>)
-                   <span class="c">/* 2^6 - 1 = 63 */</span></pre>
-    </div>
-    <div class="col">
-      <ul>
-        <li><b class="hl">NUM_BITS</b>: quantas “lâmpadas” temos (6).</li>
-        <li><b class="hl">VALOR_MAX</b>: o maior número que cabe, calculado pelo próprio programa: 63.</li>
-        <li>Se quisermos 8 bits, basta trocar o 6 por 8.</li>
-      </ul>
-    </div>
+                   <span class="c">/* 2^6 - 1 = 63 */</span></pre></div>
+    <div class="col"><ul>
+      <li><b class="hl">NUM_BITS</b>: quantas “lâmpadas” temos (6).</li>
+      <li><b class="hl">VALOR_MAX</b>: o maior número que cabe, calculado pelo próprio programa: 63.</li>
+      <li>Para usar 8 bits, basta trocar o 6 por 8.</li>
+    </ul></div>
   </div>
 </section>
-
-<!-- 7. CODIGO: PORTEIRO -->
-<section class="slide" data-n="7"><div class="faixa"></div>
-  <h2>No código 2: o porteiro</h2>
+<section class="slide" data-n="12"><div class="faixa"></div><div class="quem q-eduardo">EDUARDO</div>
+<h2>No código 2: o porteiro</h2>
   <p class="sub">Antes de converter, o programa confere se o número pode entrar</p>
   <div class="row">
     <div class="col" style="flex:1.3">
@@ -186,21 +227,13 @@ img.print { max-width: 100%; max-height: 520px; display: block; }
     <span class="k">return</span> v &gt;= VALOR_MIN &amp;&amp; v &lt;= VALOR_MAX;
     <span class="c">/* 0 &lt;= v &lt;= 63 */</span>
 }</pre>
-      <p style="margin-top:22px;font-size:22px">Antes disso, <b>ler_decimal()</b> confere letra por letra se o que foi digitado é mesmo um número (recusa “abc”).</p>
-    </div>
-    <div class="col">
-      <div class="balao"><b>Pense num porteiro de festa:</b><br>
-        ✔ De 0 a 63: pode entrar.<br>
-        ✘ -1: “número negativo não entra”.<br>
-        ✘ 64: “precisaria de mais de 6 bits”.</div>
-    </div>
+      <p style="margin-top:22px;font-size:22px">Antes disso, <b>ler_decimal()</b> confere letra por letra se o que foi digitado é mesmo um número (recusa “abc”).</p></div>
+    <div class="col"><div class="balao"><b>Pense num porteiro de festa:</b><br>✔ De 0 a 63: pode entrar.<br>✘ -1: “número negativo não entra”.<br>✘ 64: “precisaria de mais de 6 bits”.</div></div>
   </div>
 </section>
-
-<!-- 8. CODIGO: CONVERSAO -->
-<section class="slide" data-n="8"><div class="faixa"></div>
-  <h2>No código 3: a conversão</h2>
-  <p class="sub">As mesmas duas divisões por 16 do slide 5, só que em C</p>
+<section class="slide" data-n="13"><div class="faixa"></div><div class="quem q-eduardo">EDUARDO</div>
+<h2>No código 3: a conversão</h2>
+  <p class="sub">As mesmas duas divisões por 16 do caderno, só que em C</p>
   <div class="row">
     <div class="col" style="flex:1.4">
 <pre class="code"><span class="k">static void</span> decimal_para_hex(<span class="k">int</span> valor, <span class="k">char</span> saida[<span class="n">3</span>])
@@ -210,39 +243,30 @@ img.print { max-width: 100%; max-height: 520px; display: block; }
     quociente /= <span class="n">16</span>;
     saida[<span class="n">0</span>] = digito_para_hex(quociente % <span class="n">16</span>);
     saida[<span class="n">2</span>] = <span class="s">'\0'</span>;
-}</pre>
-    </div>
-    <div class="col">
-      <ul style="font-size:23px">
-        <li><code>% 16</code> pega o <b class="hl">resto</b> da divisão.</li>
-        <li><code>/= 16</code> divide e guarda o <b class="hl">resultado</b>.</li>
-        <li><b>digito_para_hex</b> troca o número pela letra, usando a tabela <code>"0123456789ABCDEF"</code>.</li>
-      </ul>
-    </div>
+}</pre></div>
+    <div class="col"><ul style="font-size:23px">
+      <li><code>% 16</code> pega o <b class="hl">resto</b> da divisão.</li>
+      <li><code>/= 16</code> divide e guarda o <b class="hl">resultado</b>.</li>
+      <li><b>digito_para_hex</b> troca o número pela letra usando a “tabelinha” <code>"0123456789ABCDEF"</code>.</li>
+    </ul></div>
   </div>
 </section>
-
-<!-- 9. CODIGO: BINARIO -->
-<section class="slide" data-n="9"><div class="faixa"></div>
-  <h2>No código 4: mostrando as 6 lâmpadas</h2>
+<section class="slide" data-n="14"><div class="faixa"></div><div class="quem q-eduardo">EDUARDO</div>
+<h2>No código 4: mostrando as 6 lâmpadas</h2>
   <p class="sub">O programa também mostra o número em binário</p>
   <div class="row">
     <div class="col" style="flex:1.4">
 <pre class="code"><span class="k">for</span> (<span class="k">int</span> i = NUM_BITS - <span class="n">1</span>; i &gt;= <span class="n">0</span>; i--)
     saida[NUM_BITS - <span class="n">1</span> - i] =
-        ((valor &gt;&gt; i) &amp; <span class="n">1</span>) ? <span class="s">'1'</span> : <span class="s">'0'</span>;</pre>
-    </div>
+        ((valor &gt;&gt; i) &amp; <span class="n">1</span>) ? <span class="s">'1'</span> : <span class="s">'0'</span>;</pre></div>
     <div class="col">
-      <div class="balao"><b>Em português:</b><br>
-        “Para cada uma das 6 lâmpadas, da esquerda para a direita, olhe se ela está acesa. Se estiver, escreva 1; se não, escreva 0.”</div>
+      <div class="balao"><b>Em português:</b><br>“Para cada uma das 6 lâmpadas, da esquerda para a direita, veja se ela está acesa. Se estiver, escreva 1; se não, escreva 0.”</div>
       <p style="font-size:26px;font-family:'DejaVu Sans Mono',monospace;margin-top:20px">42 → <b class="hl">101010</b></p>
     </div>
   </div>
 </section>
-
-<!-- 10. PRINT VALIDOS -->
-<section class="slide" data-n="10"><div class="faixa"></div>
-  <h2>Funcionando: números válidos</h2>
+<section class="slide" data-n="15"><div class="faixa"></div><div class="quem q-eduardo">EDUARDO</div>
+<h2>Funcionando: números válidos</h2>
   <div class="row" style="align-items:center">
     <div class="col" style="flex:1.2"><div class="janela"><div class="barra"><i></i><i></i><i></i></div><img class="print" src="../prints/01_decimal_validos.png" alt="Execução com 0, 42 e 63"></div></div>
     <div class="col">
@@ -255,10 +279,8 @@ img.print { max-width: 100%; max-height: 520px; display: block; }
     </div>
   </div>
 </section>
-
-<!-- 11. PRINT INVALIDOS -->
-<section class="slide" data-n="11"><div class="faixa"></div>
-  <h2>Funcionando: o porteiro barrando</h2>
+<section class="slide" data-n="16"><div class="faixa"></div><div class="quem q-felipe">FELIPE</div>
+<h2>Funcionando: o porteiro barrando</h2>
   <div class="row" style="align-items:center">
     <div class="col" style="flex:1.2"><div class="janela"><div class="barra"><i></i><i></i><i></i></div><img class="print" src="../prints/02_decimal_invalidos.png" alt="Execução com -1, 64 e abc"></div></div>
     <div class="col">
@@ -271,19 +293,37 @@ img.print { max-width: 100%; max-height: 520px; display: block; }
     </div>
   </div>
 </section>
-
-<!-- 12. CONCLUSAO -->
-<section class="slide" data-n="12"><div class="faixa"></div>
-  <h2>Conclusão</h2>
+<section class="slide" data-n="17"><div class="faixa"></div><div class="quem q-cesar">CÉSAR</div>
+<h2>Desafio para a turma!</h2>
+  <p class="sub">Quanto dá em hexadecimal? (resposta embaixo, sem espiar)</p>
+  <div class="quiz">
+    <div class="card"><div class="pergunta">15</div><div class="resp">0x0F</div><p style="margin-top:10px">o maior número de 1 dígito: F</p></div>
+    <div class="card"><div class="pergunta">32</div><div class="resp">0x20</div><p style="margin-top:10px">2 grupos de 16, sobra 0</p></div>
+    <div class="card"><div class="pergunta">64</div><div class="resp" style="color:var(--vermelho)">ERRO!</div><p style="margin-top:10px">pegadinha: não cabe em 6 bits</p></div>
+  </div>
+</section>
+<section class="slide" data-n="18"><div class="faixa"></div><div class="quem q-vitor">VITOR</div>
+<h2>Conclusão</h2>
   <p class="sub">O que aprendemos com o projeto</p>
   <ul>
+    <li>Hexadecimal é um <b class="hl">jeito curto</b> de escrever o binário do computador.</li>
     <li>Com <b class="hl">6 bits</b> cabem só 64 números: de <b>0</b> a <b>63</b> (0x00 a 0x3F).</li>
-    <li>Para ir de decimal para hexadecimal, basta <b class="hl">dividir por 16</b> e ler os restos.</li>
+    <li>Para converter, basta <b class="hl">dividir por 16</b> e ler os restos de baixo para cima.</li>
     <li>O programa em C <b class="hl">confere o limite</b> antes de converter e avisa quando o número não cabe.</li>
-    <li>Fizemos a conta “na mão” no código, sem atalhos prontos da linguagem, para mostrar a teoria funcionando.</li>
   </ul>
-  <p style="margin-top:auto;font-size:30px;font-weight:700;color:var(--azul-esc)">Obrigado! Perguntas?</p>
 </section>
-
+<section class="slide" data-n="19"><div class="faixa"></div><div class="quem q-todos">TODOS</div>
+<h2>Teste você mesmo!</h2>
+  <p class="sub">Abra no celular ou no computador e converta qualquer número de 0 a 63</p>
+  <div class="row" style="align-items:center">
+    <div class="col" style="flex:0 0 300px"><img src="qr.svg" alt="QR code do site" style="width:280px;height:280px;display:block"></div>
+    <div class="col">
+      <p style="font-size:22px;color:var(--cinza);margin:0 0 8px">Aponte a câmera para o QR code ou acesse:</p>
+      <p class="link">paimedu-dev.github.io/<br>Conversor-hexadecimal</p>
+      <p style="margin-top:40px;font-size:34px;font-weight:700;color:var(--azul-esc)">Obrigado! Perguntas?</p>
+      <p style="font-size:20px;color:var(--cinza)">Vitor · César · Eduardo · Felipe</p>
+    </div>
+  </div>
+</section>
 </body>
 </html>
